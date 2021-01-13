@@ -24,15 +24,23 @@ constructor( private pedidoService:PedidoService,private prodService:ProductoSer
 
 obtenerStringProductos(){
     for(var i=0;i<this.carrito.length;i++){
-        this.productos+=this.carrito[i].nombre+" $"+this.carrito[i].precio+" - ";
+        this.productos+=this.carrito[i].nombre+" | precio = $"+this.carrito[i].precio+"| cantidad = "+this.carrito[i].cantidad+" <br> <br>        ";
     }
 }
+
+
 
 eliminarProducto(id){
   console.log(id);
   for(var i=0;i<this.carrito.length;i++){
-    if (this.carrito[i].id === id){
+    if (this.carrito[i].id === id)
+    {
+      if (this.carrito[i].cantidad === 1){
       this.carrito.splice(i,1);
+       }
+    else{
+      this.carrito[i].cantidad-=1;
+    }
     }
   }
   this.calcularTotal();
@@ -41,7 +49,7 @@ eliminarProducto(id){
 calcularTotal(){
   this.total=0;
   for(let i =0;i<this.carrito.length;i++){
-      this.total+= this.carrito[i].precio;
+      this.total+= this.carrito[i].precio * this.carrito[i].cantidad;
 
   }
 }
@@ -64,12 +72,15 @@ validar(){
         this.pedido.total= this.total;
 
         let json = JSON.stringify(this.pedido);
-
         this.pedidoService.enviarMail(json).subscribe(data=>console.log(data));
+        this.message.success("Pedido enviado correctamente , en las proximas horas se te contactará al numero de celular ingresado para continuar con el pedido")
+        document.getElementById('login').style.display='none';
+        this.carrito=[];
+        window.location.href="https://regaloscba.web.app/home";
       }
   }
   else{
-    alert("Datos incorrectos");
+    alert("Ingrese un numero de celular valido , sin espacios ni guiones ");
   }
 }
 

@@ -26,6 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NzImageModule,
     NzMessageModule,
     NzSelectModule,
+ 
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

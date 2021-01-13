@@ -23,6 +23,7 @@
     "@angular/router": "^9.0.7",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@fullcalendar/core": "^4.4.0",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.2",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "angular-user-idle": "^2.2.1",

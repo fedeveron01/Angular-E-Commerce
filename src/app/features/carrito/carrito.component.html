@@ -10,7 +10,7 @@
         text-overflow: ellipsis;
         overflow: hidden;" >
                     <button class="therichpost-button therichpost-black" (click)="eliminarProducto(prod.id)"> <i class="fa fa-trash"></i></button>
-            {{prod.nombre}}<b>${{prod.precio}}</b>
+            x{{prod.cantidad}} - {{prod.nombre}}<b> ${{prod.precio}}</b>
             <img nz-image [nzSrc]="prod.imagen" style="width:60px;height: 70px;;object-fit: cover;">
 
           </div>
@@ -31,7 +31,7 @@
           <p><input id="celular" required minlength="9" maxlength="10" class="therichpost-input therichpost-border" name="celular" type="tel" pattern="[3]{1}[4-5]{1}[0-9]{7,8}" placeholder="Ingrese su numero de celular sin espacios (3510000000) "></p>
           <p>Total : ${{total}}</p>
           
-          <button type="button" class="therichpost-button therichpost-padding-large therichpost-red therichpost-margin-bottom" (click)="validar()">Confirmar</button>
+          <button type="button" class="therichpost-button therichpost-padding-large therichpost-black therichpost-margin-bottom" (click)="validar()">Confirmar</button>
         </div>
       </div>
     </div>
