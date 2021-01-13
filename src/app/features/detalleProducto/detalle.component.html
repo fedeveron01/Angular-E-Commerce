@@ -1,0 +1,16 @@
+
+      <!-- Detalle Producto -->
+      <div align="center" class="therichpost-row ">
+
+
+        <p>{{producto.nombre}}</p>
+        <img nz-image [nzSrc]="producto.imagen" style="width:400px;height: 370px;;object-fit: cover;">
+
+        <p>${{producto.precio}}</p>
+        <button class="therichpost-button therichpost-black" (click)="agregarProducto()">Agregar <i class="fa fa-shopping-cart"></i></button>
+
+
+
+
+    </div>
+   

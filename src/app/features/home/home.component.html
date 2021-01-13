@@ -1,0 +1,127 @@
+    <!-- Sidebar/menu -->
+    <nav class="therichpost-sidebar therichpost-bar-block therichpost-white therichpost-collapse therichpost-top" style="z-index:3;width:250px" id="mySidebar">
+      <div class="therichpost-container therichpost-display-container therichpost-padding-16">
+        <i (click)="therichpost_close()" class="fa fa-remove therichpost-hide-large therichpost-button therichpost-display-topright"></i>
+        <h3 class="therichpost-wide"><b>Regalos Córdoba</b></h3>
+      </div>
+      <div class="therichpost-padding-64 therichpost-large therichpost-text-grey" style="font-weight:bold">
+
+        <a (click)="abrirProductos()" class="therichpost-bar-item therichpost-button">Productos</a>
+        <a (click)="abrirCarrito()" class="therichpost-bar-item therichpost-button">Carrito</a>
+
+      </div>
+      <a href="#footer" class="therichpost-bar-item therichpost-button therichpost-padding">Contacto</a> 
+    </nav>
+    <!-- Top menu on small screens -->
+    <header class="therichpost-bar therichpost-top therichpost-hide-large therichpost-black therichpost-xlarge">
+      <a href="javascript:void(0)" class="therichpost-bar-item therichpost-button therichpost-padding-24 therichpost-left" (click)="therichpost_open()"><i class="fa fa-bars"></i></a>
+
+      <div class="therichpost-bar-item therichpost-padding-24 therichpost-wide"><button (click)="abrirProductos()" class="therichpost-button therichpost-black">Regalos Cba</button></div>
+    </header>
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="therichpost-overlay therichpost-hide-large" (click)="therichpost_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <!-- !PAGE CONTENT! -->
+    <div class="therichpost-main" style="margin-left:250px">
+      <!-- Push down content on small screens -->
+      <div class="therichpost-hide-large" style="margin-top:83px"></div>
+      
+      <!-- Top header -->
+      <header class="therichpost-container therichpost-xlarge">
+
+        <div *ngIf="opcion==0">
+        <p class="therichpost-right">
+          <br> 
+          <nz-badge [nzCount]=carrito.length>
+          <button class="therichpost-button therichpost-black" (click)="abrirCarrito()"><i class="fa fa-shopping-cart therichpost-margin-right"></i>          </button>
+        </nz-badge>
+        </p>
+      </div>
+      <div *ngIf="opcion!=0">
+        <p class="therichpost-left">
+          <br> 
+          <button class="therichpost-button therichpost-black" (click)="abrirProductos()">x</button>
+        </p>
+      </div>
+      </header>
+      <!-- Image header -->
+      <div class="therichpost-display-container therichpost-container">
+        <div class="therichpost-display-topleft therichpost-text-white" style="padding:24px 48px">
+        </div>
+      </div>
+      <div class="therichpost-container therichpost-text-grey" id="jeans">
+      </div>
+      <!-- Product grid -->
+
+      <div *ngIf="productos==undefined"><p>Cargando..</p><i nz-icon nzType="loading" nzTheme="outline" style="font-size:40px;"></i></div>
+      
+      <div *ngIf="opcion==0 && productos.length>0" class="therichpost-row ">
+        <nz-select ngModel="recientes" (ngModelChange)="ordenar($event)" >
+          <nz-option nzValue="precioAscendente"  nzLabel="Ordenar por precio menor a mayor "></nz-option>
+          <nz-option nzValue="precioDescendente"  nzLabel="Ordenar por precio mayor a menor"></nz-option>
+          <nz-option nzValue="recientes"  nzLabel="Ordenar por productos nuevos primero"></nz-option>
+
+        </nz-select>
+        <br>
+
+        <div *ngFor="let prod of productos "  class="therichpost-col l3 s6">
+          <div class="therichpost-container" style="white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;">
+            <img nzDisablePreview="true" (click)="abrirDetalle(prod)" nz-image [nzSrc]="prod.imagen" style="width:160px;height: 170px;;object-fit: cover;">
+            <p>{{prod.nombre}}<br><b>${{prod.precio}}</b></p>
+            <button class="therichpost-button therichpost-black" (click)="agregarProducto(prod.id)">Agregar <i class="fa fa-shopping-cart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="opcion==1">
+        <app-carrito [carrito]="carrito"></app-carrito>
+      </div>
+
+      <div *ngIf="opcion==2">
+        <app-detalle [producto]="prodSeleccionado" [carrito]="carrito" [opcion]="opcion"></app-detalle>
+      </div>
+
+      <!-- Subscribe section -->
+      <div class="therichpost-container therichpost-black therichpost-padding-32">
+        <h1>Subscribe</h1>
+        <p><input class="therichpost-input therichpost-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+        <button type="button" class="therichpost-button therichpost-red therichpost-margin-bottom">Subscribe</button>
+      </div>
+      
+      <!-- Footer -->
+      <footer class="therichpost-padding-64 therichpost-light-grey therichpost-small therichpost-center" id="footer">
+        <div class="therichpost-row-padding">
+          <div class="therichpost-col s4">
+            <h4>Contacto</h4>
+            <p>Questions? Go ahead.</p>
+            
+              <p><input class="therichpost-input therichpost-border" type="text" placeholder="Name" name="Name" required></p>
+              <p><input class="therichpost-input therichpost-border" type="text" placeholder="Email" name="Email" required></p>
+              <p><input class="therichpost-input therichpost-border" type="text" placeholder="Subject" name="Subject" required></p>
+              <p><input class="therichpost-input therichpost-border" type="text" placeholder="Message" name="Message" required></p>
+              <button type="submit" class="therichpost-button therichpost-block therichpost-black">Send</button>
+            
+          </div>
+          <div class="therichpost-col s4">
+            <h4>About</h4>
+            <p><a href="#">About us</a></p>
+
+            <p><a href="#">Help</a></p>
+          </div>
+          <div class="therichpost-col s4 therichpost-justify">
+            <h4>Store</h4>
+            <p><i class="fa fa-fw fa-map-marker"></i>Córdoba,Argentina</p>
+            <p><i class="fa fa-fw fa-phone"></i> 351</p>
+            <p><i class="fa fa-fw fa-envelope"></i> stellaveron@</p>
+            <p> hotmail.com</p>
+            <h4>Medios de pago : </h4>
+            <p><i class="fa fa-fw fa-cc-amex"></i> Efectivo</p>
+            <p><i class="fa fa-fw fa-credit-card"></i>MercadoPago</p>
+            <br>
+
+          </div>
+        </div>
+      </footer>
+      <!-- End page content -->
+    </div>

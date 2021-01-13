@@ -1,0 +1,41 @@
+
+      <!-- Carrito -->
+      <div align="center" class="therichpost-row ">
+
+
+        <h1>Carrito</h1>
+        <div *ngIf="carrito.length==0"><p>No hay ningun producto en el carrito , vuelve a productos para agregar al carrito</p></div>
+        <div *ngIf="carrito.length>0">
+        <div align="left" *ngFor="let prod of carrito" style="white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;" >
+                    <button class="therichpost-button therichpost-black" (click)="eliminarProducto(prod.id)"> <i class="fa fa-trash"></i></button>
+            {{prod.nombre}}<b>${{prod.precio}}</b>
+            <img nz-image [nzSrc]="prod.imagen" style="width:60px;height: 70px;;object-fit: cover;">
+
+          </div>
+        <br>
+        Total : $ <b>{{total}}</b>
+        <br>
+        <a href="javascript:void(0)" class="therichpost-bar-item therichpost-button therichpost-black" onclick="document.getElementById('login').style.display='block'">Finalizar pedido</a> 
+        <br>
+        <br>
+      </div>
+
+    <!--  Modal -->
+    <div id="login" class="therichpost-modal">
+      <div class="therichpost-modal-content therichpost-animate-zoom" style="padding:32px">
+        <div class="therichpost-container therichpost-white therichpost-center">
+          <i onclick="document.getElementById('login').style.display='none'" class="fa fa-remove therichpost-right therichpost-button therichpost-transparent therichpost-xxlarge"></i>
+          <p><input id="apellidoNombre" required minlength="4" class="therichpost-input therichpost-border" name="apellidoNombre" type="text" placeholder="Ingrese su nombre y apellido"></p>
+          <p><input id="celular" required minlength="9" maxlength="10" class="therichpost-input therichpost-border" name="celular" type="tel" pattern="[3]{1}[4-5]{1}[0-9]{7,8}" placeholder="Ingrese su numero de celular sin espacios (3510000000) "></p>
+          <p>Total : ${{total}}</p>
+          
+          <button type="button" class="therichpost-button therichpost-padding-large therichpost-red therichpost-margin-bottom" (click)="validar()">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+   
