@@ -76,14 +76,17 @@
         <!-- Productos-->
 
         <div *ngFor="let prod of productos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize"  class="therichpost-col l3 s6">
-          <div class="therichpost-container" style="white-space: nowrap;
+          <div align="center" class="therichpost-container" style="white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;">
             <img nzDisablePreview="true" (click)="abrirDetalle(prod)" nz-image [nzSrc]="prod.imagen" style="width:160px;height: 170px;;object-fit: cover;">
             <p>{{prod.nombre}}<br><b>${{prod.precio}}</b></p>
-            <input [id]="prod.id" type="number" min="1" max="9" pattern="[1-9]{1}" value="1" style="width:50px;">
+            <button class="therichpost-button therichpost-white" (click)="disminuirCantidad(prod.id)"><span style="font-size: 19px;">-</span></button>
+            <input [id]="prod.id" type="number" min="1" max="9" pattern="[1-9]{1}" value="1" style="width:30px;">
+            <button class="therichpost-button therichpost-white" (click)="aumentarCantidad(prod.id)"><span style="font-size: 19px;">+</span></button>
+
             <br>
-            <button class="therichpost-button therichpost-black" (click)="agregarProducto(prod.id)">Agregar <i class="fa fa-shopping-cart"></i></button>
+            <button class="therichpost-button therichpost-black" (click)="agregarProducto(prod.id)">Agregar al <i class="fa fa-shopping-cart"></i></button>
           </div>
     
         </div>

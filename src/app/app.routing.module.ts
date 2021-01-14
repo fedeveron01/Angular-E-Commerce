@@ -14,26 +14,13 @@ const appRoutes: Routes = [
         path: 'home',
         loadChildren: () => import('src/app/features/home/home.module').then(m => m.HomeModule)
     },
-    {
-        path: 'register',
-        loadChildren: () => import('src/app/features/register-user/register-user.module').then(m => m.RegisterUserModule)
-    },
+ 
     {
         path: 'main',
         component: LayoutComponent,
         children: [{
-            path: 'dashboard',
-            loadChildren: () => import('src/app/features/dashboard/dashboard.module').then(m => m.DashboardModule),
-            canActivate: [AuthGuard]
-        },
-        {
-            path: 'departments',
-            loadChildren: () => import('src/app/features/department/department.module').then(m => m.DepartmentModule),
-            canActivate: [AuthGuard]
-        },
-        {
-            path: 'employees',
-            loadChildren: () => import('src/app/features/employees/employees.module').then(m => m.EmployeesModule),
+            path: 'productos',
+            loadChildren: () => import('src/app/features/productos/productos.module').then(m => m.ProductosModule),
             canActivate: [AuthGuard]
         },
         {

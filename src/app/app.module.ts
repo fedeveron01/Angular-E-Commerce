@@ -18,6 +18,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppCommonModule } from 'src/app/app.common.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserIdleModule.forRoot({ idle: 300, timeout: 1, ping: null }),
     HttpClientModule,
     AppCommonModule,
+    NzMessageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

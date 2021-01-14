@@ -78,12 +78,32 @@ obtenerCantidadProductos():number{
   return cantidad;
 }
 
+aumentarCantidad(id){
+  var cant = <HTMLInputElement>document.getElementById(id);
+  var valor = parseInt(cant.value);
+  if(valor<9){
+     valor = parseInt(cant.value) + 1;
+  }
+  cant.value=valor.toString();
 
+}
+
+disminuirCantidad(id){
+  var cant = <HTMLInputElement>document.getElementById(id);
+  var valor = parseInt(cant.value);
+  if(valor>1){
+     valor = parseInt(cant.value) - 1;
+  }
+  cant.value=valor.toString();
+}
 agregarProducto(id){
   var repetido = false;
   var cant = <HTMLInputElement>document.getElementById(id);
   if(parseInt(cant.value) > 9){
     this.message.warning("No se puede agregar más de 9 productos a la vez");
+  }  
+  if(parseInt(cant.value) < 1){
+    this.message.warning("La cantidad de productos debe ser al menos 1");
   }
   else
   {

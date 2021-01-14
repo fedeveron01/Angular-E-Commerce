@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     let user: User = this.userService.getUserByUserNameAndPassword(this.userName, this.password);
     if (user) {
       this.userContextService.setUser(user);
-      this.routeStateService.add("Dashboard", '/main/dashboard', null, true);
+      this.routeStateService.add("Productos", '/main/productos', null, true);
       return;
     }
     this.toastService.addSingle('error', '', 'Invalid user.');
