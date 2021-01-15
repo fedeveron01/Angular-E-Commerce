@@ -18,6 +18,12 @@ export class ProductoService {
     return this.http.post(this.url,producto,{headers:headers});
   }
 
+  public deleteProducto(id):any{
+    return this.http.delete(this.url + id);
+  }
+
+
+
   
 
 }

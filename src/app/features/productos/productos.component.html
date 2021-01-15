@@ -30,7 +30,7 @@
                 </td>
                 <td>
                     <button nz-button nzType="primary">Editar</button>
-                    <button nz-button nzType="default" nzDanger>Eliminar</button>
+                    <button nz-button nzType="default" nzDanger (click)="abrirModalEliminar(prod.id)">Eliminar</button>
 
                 </td>
             </tr>
@@ -41,21 +41,36 @@
     <!-- Modal registrar producto -->
     <nz-modal [(nzVisible)]="isVisible" nzTitle="Registrar producto" (nzOnCancel)="abrirModal()" (nzOnOk)="registrarProducto()" nzOkText="Registrar" [nzOkDisabled]="!verificado" nzCancelText="Cancelar">
         <ng-container *nzModalContent>
+            <div align="center">
           Nombre:
+          <br>
           <input id="nombre" type="text" style="width:300px">
           <br>
            <br>
           Precio : $
+          <br>
           <input id="precio" type="number" style="width:300px">
           <br>
           <br>
-          Url Img : 
+          Ruta de la imagen (URL): 
+          <br>
           <input id="imagen" type="text" style="width:300px">
             <br>
             <br>
-            <iframe src="https://imgfz.com/es/" style="height: 500px; width:300px"></iframe>
+            <iframe src="https://subefotos.com/" style="height: 300px; width:300px"></iframe>
             {{verificar()}}
+        </div>
         </ng-container>
       </nz-modal>
+
+      <!-- Modal eliminar producto -->
+
+      <nz-modal [(nzVisible)]="modalEliminar" nzTitle="Eliminar producto" (nzOnCancel)="abrirModalEliminar(0)" (nzOnOk)="eliminarProducto()" nzOkText="Eliminar" nzCancelText="Cancelar">
+        <ng-container *nzModalContent>
+            <div align="center">
+        </div>
+        </ng-container>
+      </nz-modal>
+
 
 </p-panel>

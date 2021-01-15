@@ -20,6 +20,8 @@ export class ProductosComponent implements OnInit {
   imagen;
   verificado=false;
   isVisible=false;
+  modalEliminar=false;
+  idSeleccionado;
   
 
   constructor(
@@ -59,13 +61,31 @@ export class ProductosComponent implements OnInit {
     delete this.producto.id;
     let json = JSON.stringify(this.producto);
     console.log(json);
-    this.productoService.postProducto(json).subscribe(data=>console.log(data));
+    this.productoService.postProducto(json).subscribe(data=>this.getProductos());
     this.message.success("Producto registrado correctamente");
 
     this.abrirModal();
+  }
+  getProductos(){
+    this.productoService.getProductos().subscribe(data=>this.productos=data );
 
   }
+  eliminarProducto (){
+    this.productoService.deleteProducto(this.idSeleccionado).subscribe(data=>this.getProductos());
+    this.abrirModalEliminar(0);
+    this.message.success("Producto eliminado correctamente");
+
+
+  }
+
   abrirModal(){
     this.isVisible=!this.isVisible;
+  }
+
+  abrirModalEliminar(id){
+    if (id !==0){
+      this.idSeleccionado= id;
+    }
+    this.modalEliminar=!this.modalEliminar;
   }
 }
