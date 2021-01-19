@@ -1,15 +1,11 @@
 export class User {
     constructor() {
-        this.userId = null;
-        this.userName = null;
-        this.password = null;
-        this.emailId = null;
-        this.birthDate = null;
+        this.nombre = null;
+        this.contrasena = null;
+
     }
 
-    userId: number;
-    userName: string;
-    password: string;
-    emailId: string;
-    birthDate: Date;
+    nombre: string;
+    contrasena: string;
+ 
 }

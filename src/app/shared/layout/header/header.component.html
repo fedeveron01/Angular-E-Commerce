@@ -16,16 +16,14 @@
             <a class="icon"><i class="fa fa-bell"></i><span class="badge">5</span></a>
         </div>
         <div class="ng-header-right-item right" (click)="userdetails.toggle($event)">
-            <a class="icon"><span [innerHtml]="user.emailId" class="user-name"></span><i class="fa fa-user"></i></a>
         </div>
     </div>
 </div>
 
 <!-- user detials overlay panel -->
 <p-overlayPanel #userdetails>
-    <div><b>User Name: </b><i [innerHtml]="user.userName"></i></div>
-    <div><b>Email Id: </b><i [innerHtml]="user.emailId"></i></div>
-    <div><b>Birthdate: </b><i [innerHtml]="user.birthDate | date:'dd/MM/yyyy'"></i></div>
+    <div><b>User Name: </b><i [innerHtml]="user.nombre"></i></div>
+
 </p-overlayPanel>
 
 <!-- notifications sidebar -->

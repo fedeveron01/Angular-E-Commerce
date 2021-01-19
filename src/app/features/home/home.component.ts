@@ -102,7 +102,7 @@ agregarProducto(id){
   if(parseInt(cant.value) > 9){
     this.message.warning("No se puede agregar más de 9 productos a la vez");
   }  
-  if(parseInt(cant.value) < 1){
+  else if(parseInt(cant.value) < 1){
     this.message.warning("La cantidad de productos debe ser al menos 1");
   }
   else

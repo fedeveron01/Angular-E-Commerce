@@ -42,15 +42,22 @@ export class LoginComponent implements OnInit {
     this.msgs = [{ severity: 'info', detail: 'UserName: admin' }, { severity: 'info', detail: 'Password: password' }];
   }
 
+
+  login(user){
+    this.userContextService.setUser(user);
+    this.routeStateService.add("Productos", '/main/productos', null, true);
+  }
   onClickLogin() {
-    let user: User = this.userService.getUserByUserNameAndPassword(this.userName, this.password);
-    if (user) {
-      this.userContextService.setUser(user);
-      this.routeStateService.add("Productos", '/main/productos', null, true);
-      return;
-    }
-    this.toastService.addSingle('error', '', 'Invalid user.');
-    return;
+    var user : User = new User ();
+
+    user.nombre = this.userName;
+    user.contrasena = this.password;
+    var res ;
+    this.userService.login(user).subscribe(data=>
+      (data === true) ? this.login(user) : this.toastService.addSingle('error', '', 'Invalid user.')
+
+      );
+
   }
 
   onLanguageChange($event) {
