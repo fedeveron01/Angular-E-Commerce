@@ -75,8 +75,7 @@ validar(){
         this.pedidoService.enviarMail(json).subscribe(data=>console.log(data));
         this.message.success("Pedido enviado correctamente , en las proximas horas se te contactará al numero de celular ingresado para continuar con el pedido")
         document.getElementById('login').style.display='none';
-        this.carrito=[];
-        window.location.href="https://regaloscba.web.app/home";
+        this.carrito.splice(0,this.carrito.length);
       }
   }
   else{

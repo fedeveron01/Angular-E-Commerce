@@ -7,7 +7,11 @@
         <img nz-image [nzSrc]="producto.imagen" style="width:400px;height: 370px;;object-fit: cover;">
 
         <p>${{producto.precio}}</p>
-        <button class="therichpost-button therichpost-black" (click)="agregarProducto()">Agregar <i class="fa fa-shopping-cart"></i></button>
+        <button class="therichpost-button therichpost-white" (click)="disminuirCantidad(producto.id)"><span style="font-size: 19px;">-</span></button>
+        <input [id]="producto.id" type="number" min="1" max="9" pattern="[1-9]{1}" value="1" style="width:30px;">
+        <button class="therichpost-button therichpost-white" (click)="aumentarCantidad(producto.id)"><span style="font-size: 19px;">+</span></button>
+        <br>
+        <button class="therichpost-button therichpost-black" (click)="agregarProducto(producto)">Agregar <i class="fa fa-shopping-cart"></i></button>
 
 
 

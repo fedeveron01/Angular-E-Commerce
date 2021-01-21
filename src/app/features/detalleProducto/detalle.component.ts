@@ -20,6 +20,7 @@ producto;
 @Input()
 carrito;
 
+
 @Input()
 opcion;
 
@@ -32,10 +33,57 @@ constructor(private message:NzMessageService){
 ngOnInit(): void {
     console.log(this.producto);
 }
-agregarProducto(){
-    this.carrito.push(this.producto);
-    this.message.success('Producto agregado correctamente al carrito , pulsa el boton cerrar para continuar con la compra o ir al carrito');
+aumentarCantidad(id){
+  var cant = <HTMLInputElement>document.getElementById(id);
+  var valor = parseInt(cant.value);
+  if(valor<9){
+     valor = parseInt(cant.value) + 1;
+  }
+  cant.value=valor.toString();
 
-    this.opcion=0;
+}
+
+disminuirCantidad(id){
+  var cant = <HTMLInputElement>document.getElementById(id);
+  var valor = parseInt(cant.value);
+  if(valor>1){
+     valor = parseInt(cant.value) - 1;
+  }
+  cant.value=valor.toString();
+}
+agregarProducto(producto){
+  var repetido = false;
+  var cant = <HTMLInputElement>document.getElementById(producto.id);
+  if(parseInt(cant.value) > 9){
+    this.message.warning("No se puede agregar más de 9 productos a la vez");
+  }  
+  else if(parseInt(cant.value) < 1){
+    this.message.warning("La cantidad de productos debe ser al menos 1");
+  }
+  else
+  {
+      for(var j = 0; j<this.carrito.length;j++){
+        if (this.carrito[j].id === producto.id){
+          repetido = true;
+          break;
+        }
+      }
+      if(repetido){
+        this.carrito[j].cantidad+=parseInt(cant.value);
+
+      }else{
+        this.producto.cantidad=parseInt(cant.value);
+        this.carrito.push(this.producto);
+
+      }
+      this.message.success('Producto agregado correctamente al carrito , abre el carrito para finalizar la compra o eliminar un articulo');
     }
   }
+
+  }
+
+
+
+
+
+
